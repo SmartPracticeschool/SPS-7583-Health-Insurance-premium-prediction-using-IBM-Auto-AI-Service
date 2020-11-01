@@ -285,71 +285,9 @@ a row that has similar inputs to what was inputted. You can find a male, 26 year
 non-smoker to get a premium of 3,900. This is relatively close to the model's prediction, so 
 we know the model is working properly.
 
-## Step 6. Create a notebook from your model (optional)
-#### If you want to run the notebook that you explore below, go to [`https://github.com/IBM/predict-insurance-charges-with-autoai/blob/master/notebooks/Insurance%20Premium%20Predictor%20-%20P8%20notebook.ipynb).
-With AutoAI's latest features, the code that is run to create these models is no more a black box. One or more of these models can be saved as a Jupyter notebook and the Python code can be run and enhanced from within. 
-
-### 6.1 Create notebook 
-![create notebook](https://media.github.ibm.com/user/9960/files/1c47db00-8ae0-11ea-9066-9bb6137b6ee3)
-
-* Click on `Save As` at the top-right corner of the model, and click `Notebook`. 
-
-* This opens a new tab (be sure to enable pop-up for this website) titled `New Notebook` where in you can edit the default name if you choose to and then click on `Create`. This might take a few minutes to load for the first time. 
-
-![also create notebook](https://media.github.ibm.com/user/9960/files/9a58b180-8ae1-11ea-97ca-f8ec5813f2ed)
-
-* Alternatively, you can also create the notebook from the `Pipeline leaderboard` view (shown above) by clicking on the `Save as` option against the model you want to save followed by selecting `Notebook`. The steps are very similar to the first method discussed above. 
-
-### 6.2 Run notebook
-![run notebook](https://media.github.ibm.com/user/9960/files/23e4e800-8e30-11ea-9335-9f4ae2b4e4ba)
-
-* Once the notebook has been created, it is listed under the `Notebooks` section within the `Assets` tab. 
-* Clicking on the notebook from the list opens the Jupyter notebook where the code in Python is available. 
-* If the notebook is locked, click on the pencil icon on the right tab to be able to run/edit the notebook. 
-* Select `Cell` option from the menu list and click `Run All`. This begins executing all steps in a sequence. Unless an error is encountered, the entire notebook content is executed. 
-
-### 6.3 Analyse notebook content
-While understanding the content within the notebook requires prior knowledge of machine learning using python, we encourage you to browse through  [this](https://developer.ibm.com/tutorials/learn-regression-algorithms-using-python-and-scikit-learn/) tutorial to learn the basics of how regression models are built in python. 
-
-In this step, you do a high-level analyses of the notebook that is generated. 
-
-* AutoAI uses [sckikit-learn](https://scikit-learn.org/stable/index.html) for creating machine learning models and for executing the steps in pipelines.  
 
 
-* [autoai-lib](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/autoai-lib-python.html) is used to transform data while being processed in the pipeline. 
-
-
-* Following snippet highlights sample code of how auto-ai is used in transforming numerical data and how scikit-learn is used in setting these transformations in a pipeline.
-![code snippet-1](https://media.github.ibm.com/user/9960/files/1cbdda00-8e30-11ea-8c2b-ee84388a27f4)
-
-
-* Here you see the Python code that went into setting up Random Forest as the algorithm of choice for regression. 
-![code snippet-2](https://media.github.ibm.com/user/9960/files/f8fa9400-8e2f-11ea-8c5b-4f5f5c0875d2)
-
-
-* Calling the fit method on the pipeline, returns an estimator which is then used to predict a value. The code below shows each of these steps.
-![code snippet-3](https://media.github.ibm.com/user/9960/files/1596cc00-8e30-11ea-8905-564f961daae3)
-
-
-* Finally, the Python code that was generated to validate the results and analyse the model performance is seen below. KFold-cross validation techniques have been applied to evaluate the model. The notebook can also be edited to apply other validation techniques and can be re-evaluated.
-![code snippet-4](https://media.github.ibm.com/user/9960/files/057eec80-8e30-11ea-8239-a196b1d65cad)
-
-
-More information on the implementation considerations of AutoAI can be found [here](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/autoai-details.html)
-
-## Step 7. Run the application
-The driver code to run the application can be found under the web-app folder within the git repository that was cloned from [Step 1](#step-1-clone-the-repo). To run and test your deployed model through this Python-based user-interface,
-you need to replace the following information within `web-app/app.py`: 
-
-1) Your Watson Machine Learning (which is associated with this deployed model) `Instance ID` and `apikey`.
-1) Your deployed model's deployment URL, so you can make a POST request.
-1) Your IBM Cloud IAM token, to authorize yourself. 
-
-Now, you go into detail on how to gather these credentials. If you already know how to do this, you can
-skip the steps below, and  go straight to running the application.
-
-
-### 7.1 Get IBM Cloud API key
+### 6 Get IBM Cloud API key
 
 <!-- ![apikey-instanceID](https://media.github.ibm.com/user/79254/files/4119b680-8e30-11ea-8bc3-97ab1558fc23) -->
 * Generate an IBM Cloud apikey by going to `cloud.ibm.com` and then from the top-right part of the screen click on `Manage`-> `IAM`.
@@ -371,7 +309,7 @@ skip the steps below, and  go straight to running the application.
 
 ![download](https://user-images.githubusercontent.com/10428517/95252393-ccc5b380-07d1-11eb-8d14-9d7154f71b86.png)
 
-### 7.2 Get model deployment ID
+### 7 Get model deployment ID
 
 <!-- ![model-deploy-url](https://user-images.githubusercontent.com/10428517/81858555-caa84300-9518-11ea-9088-3f088216da83.gif) -->
 
@@ -389,7 +327,7 @@ and keep it handy - you will need to paste that into your `app.py` page.
 ![deploy-id](https://user-images.githubusercontent.com/10428517/95250925-a737aa80-07cf-11eb-9ff2-a51399f7c300.png)
 
 
-### 7.3 Generate the access token
+### 8 Generate the access token
 
 * From the command line, type ```curl -V``` to verify if cURL is installed in your system. If cURL is not installed, refer to [this](https://develop.zendesk.com/hc/en-us/articles/360001068567-Installing-and-using-cURL#install) instructions to get it installed.
 
@@ -408,4 +346,4 @@ As shown in the image below, the apikey can be copy and pasted from the download
 curl -X POST 'https://iam.cloud.ibm.com/oidc/token' -H 'Content-Type: application/x-www-form-urlencoded' -d 'grant_type=urn:ibm:params:oauth:grant-type:apikey&apikey=aSULp7nFTJl-jGx*******aQXfA6dxMlpuQ9QsOW'
 ```
 
-![app-Url](https://node-red-jsnym-2020-11-01.eu-gb.mybluemix.net/ui/)
+[app-Url](https://node-red-jsnym-2020-11-01.eu-gb.mybluemix.net/ui/)
